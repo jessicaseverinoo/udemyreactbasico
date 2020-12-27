@@ -1,12 +1,15 @@
 import React from 'react'
 import './comment.css'
 
-const Comment = () => {
+const Comment = (props) => {
   return (
     <>
       <div>
         <div className='comment'>
-          <p>My first comment</p>
+          <p>{props.name}</p>
+          <p>{props.email}</p>
+          <p>{props.data.toString()}</p>
+          <p>{props.message}</p>
         </div>
       </div>
     </>

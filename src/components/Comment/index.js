@@ -8,7 +8,7 @@ const Comment = (props) => {
         <div className='comment'>
           <p>{props.name}</p>
           <p>{props.email}</p>
-          <p>{props.data.toString()}</p>
+          <p>{props.date.toString()}</p>
           <p>{props.message}</p>
         </div>
       </div>

@@ -28,6 +28,19 @@ class App extends Component {
     ]
   }
 
+  addComment = () => {
+    const newComment = {
+      name: 'Luiz',
+      email: 'exemplo@mail.com',
+      date: new Date(),
+      message: 'E ai, galera'
+    }
+
+    this.setState({
+      comments: [...this.state.comments, newComment]
+    })
+  }
+ 
   render() {
     return (
       <div className="App">
@@ -37,10 +50,11 @@ class App extends Component {
             key={index}
             name={comment.name}
             email={comment.email}
-            data={comment.date}
+            date={comment.date}
             message={comment.message}
           />
         })}
+        <button onClick={this.addComment}>Adicionar comentário</button>
       </div>
     )
   }

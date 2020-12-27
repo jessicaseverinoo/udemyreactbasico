@@ -25,20 +25,26 @@ class App extends Component {
         date: new Date(2020, 12, 27),
         message: 'Olá, tudo bem?'
       }
-    ]
+    ],
+    newComment: {
+      name: '',
+      email: '',
+      message: ''
+    }
   }
 
-  addComment = () => {
-    const newComment = {
-      name: 'Luiz',
-      email: 'exemplo@mail.com',
-      date: new Date(),
-      message: 'E ai, galera'
-    }
+  addComment = (e) => {
+    e.preventDefault()
 
-    this.setState({
-      comments: [...this.state.comments, newComment]
-    })
+    const newComment = { ...this.state.newComment, date: new Date() }
+
+    this.setState({ comments: [...this.state.comments, newComment],
+                    newComment: { name: '', email: '', message: '' }})
+  }
+
+  enterValue = e => {
+    const { name, value } = e.target
+    this.setState({ newComment: { ...this.state.newComment, [name]: value } })
   }
  
   render() {
@@ -54,7 +60,45 @@ class App extends Component {
             message={comment.message}
           />
         })}
-        <button onClick={this.addComment}>Adicionar comentário</button>
+
+        <form method='post'
+              onSubmit={this.newComment}>
+          <h2>Adicionar comentário</h2>
+          <div>
+            <label for='name'>
+              Nome</label>
+            <input id='name'
+                   type='text'
+                   name='name'
+                   onChange={this.enterValue}
+                   value={this.state.newComment.name}
+                   placeholder='Digite seu nome' />
+          </div>
+          <div>
+            <label for='email'>
+              Email</label>
+            <input id='email'
+                   type='text'
+                   name='email'
+                   onChange={this.enterValue}
+                   value={this.state.newComment.email}
+                   placeholder='Digite seu email' />
+          </div>
+          <div>
+            <label for='message'>
+              Message</label>
+            <textarea id='message'
+                      type='textarea'
+                      name='message'
+                      rows='4'
+                      onChange={this.enterValue}
+                      value={this.state.newComment.message}
+                      placeholder='Digite sua mensagem'></textarea>
+          </div>
+          <button type='submit'>
+            Adicionar comentário
+          </button>
+        </form>
       </div>
     )
   }

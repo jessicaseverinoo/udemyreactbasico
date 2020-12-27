@@ -10,6 +10,7 @@ const Comment = (props) => {
           <p>{props.email}</p>
           <p>{props.date.toString()}</p>
           <p>{props.message}</p>
+          <button onClick={props.onRemove}>&times;</button>
         </div>
       </div>
     </>

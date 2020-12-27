@@ -46,6 +46,12 @@ class App extends Component {
     const { name, value } = e.target
     this.setState({ newComment: { ...this.state.newComment, [name]: value } })
   }
+
+  removeComment = comment => {
+    let list = this.state.comments
+    list = list.filter(comment => comment !== comment)
+    this.setState({ comments: list })
+  }
  
   render() {
     return (
@@ -58,6 +64,7 @@ class App extends Component {
             email={comment.email}
             date={comment.date}
             message={comment.message}
+            onRemove={this.removeComment.bind(this, comment)}
           />
         })}
 
